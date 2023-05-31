@@ -1,36 +1,17 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import numpy as np
 import os
 from keras.models import load_model
 from keras.preprocessing import image
-#from google.cloud import storage
 
 app = Flask(__name__)
-
-# # Set up the Google Cloud Storage client
-# storage_client = storage.Client.from_service_account_json('utopian-precept-383721-4faeabe1c883.json')
-
-# # Function to download and load the model
-# def get_model(bucket_name, model_file_path, local_file_path):
-#     # Ensure the directory exists
-#     os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
-
-#     # Get your bucket
-#     bucket = storage_client.get_bucket(bucket_name)
-
-#     # Download your model file
-#     blob = bucket.blob(model_file_path)
-#     blob.download_to_filename(local_file_path)
-
-#     # Load and return the model
-#     return load_model(local_file_path)
-
-# # Load the model
-# model = get_model('image_class_0530', 'ModernVTraditional.h5', 'models/ModernVTraditional.h5')
+CORS(app) # This will enable CORS for all routes
 
 model = load_model('ModernVTraditional.h5')
 
 @app.route('/', methods=['GET', 'POST'])
+@cross_origin() # This will enable CORS for this route
 def upload_file():
     if request.method == 'POST':
         # Save the file

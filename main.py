@@ -2,8 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import numpy as np
 import os
-#from keras.models import load_model
-#from keras.preprocessing.image import load_img
 from tensorflow.keras.utils import load_img
 from keras.preprocessing import image
 

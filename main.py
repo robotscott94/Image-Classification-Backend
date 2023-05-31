@@ -3,30 +3,32 @@ import numpy as np
 import os
 from keras.models import load_model
 from keras.preprocessing import image
-from google.cloud import storage
+#from google.cloud import storage
 
 app = Flask(__name__)
 
-# Set up the Google Cloud Storage client
-storage_client = storage.Client.from_service_account_json('utopian-precept-383721-4faeabe1c883.json')
+# # Set up the Google Cloud Storage client
+# storage_client = storage.Client.from_service_account_json('utopian-precept-383721-4faeabe1c883.json')
 
-# Function to download and load the model
-def get_model(bucket_name, model_file_path, local_file_path):
-    # Ensure the directory exists
-    os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
+# # Function to download and load the model
+# def get_model(bucket_name, model_file_path, local_file_path):
+#     # Ensure the directory exists
+#     os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
 
-    # Get your bucket
-    bucket = storage_client.get_bucket(bucket_name)
+#     # Get your bucket
+#     bucket = storage_client.get_bucket(bucket_name)
 
-    # Download your model file
-    blob = bucket.blob(model_file_path)
-    blob.download_to_filename(local_file_path)
+#     # Download your model file
+#     blob = bucket.blob(model_file_path)
+#     blob.download_to_filename(local_file_path)
 
-    # Load and return the model
-    return load_model(local_file_path)
+#     # Load and return the model
+#     return load_model(local_file_path)
 
-# Load the model
-model = get_model('image_class_0530', 'ModernVTraditional.h5', 'models/ModernVTraditional.h5')
+# # Load the model
+# model = get_model('image_class_0530', 'ModernVTraditional.h5', 'models/ModernVTraditional.h5')
+
+model = load_model('ModernVTraditional.h5')
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():

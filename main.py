@@ -3,8 +3,10 @@ from flask_cors import CORS, cross_origin
 import numpy as np
 import os
 #from keras_preprocessing.image import load_img
-from tensorflow.keras.utils import load_img
-from keras.preprocessing import image
+# from tensorflow.keras.utils import load_img
+# from keras.preprocessing import image
+
+from keras.utils import load_img, img_to_array
 from keras.models import load_model
 
 app = Flask(__name__)
@@ -25,8 +27,8 @@ def upload_file():
         f.save(filepath)
 
         # Load and preprocess the image
-        img = image.load_img(filepath, target_size=(150, 150)) 
-        x = image.img_to_array(img) / 255.0  # assuming you normalized images during training
+        img = load_img(filepath, target_size=(150, 150)) 
+        x = img_to_array(img) / 255.0  # assuming you normalized images during training
         x = np.expand_dims(x, axis=0)
 
         # Classify the image

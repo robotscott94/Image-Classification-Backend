@@ -4,6 +4,7 @@ import numpy as np
 import os
 from keras_preprocessing.image import load_img
 from keras.preprocessing import image
+from keras.models import load_model
 
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes

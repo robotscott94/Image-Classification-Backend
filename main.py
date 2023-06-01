@@ -2,12 +2,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import numpy as np
 import os
-#from keras_preprocessing.image import load_img
-# from tensorflow.keras.utils import load_img
-# from keras.preprocessing import image
 
 from keras.utils import load_img, img_to_array
 from keras.models import load_model
+
+from PIL import Image
+import cv2
 
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes

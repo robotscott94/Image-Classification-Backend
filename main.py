@@ -7,7 +7,7 @@ from keras.utils import load_img, img_to_array
 from keras.models import load_model
 
 from PIL import Image
-import cv2
+#import cv2
 
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes

@@ -27,7 +27,7 @@ def upload_file():
         f.save(filepath)
 
         # Load and preprocess the image
-        img = load_img(filepath, target_size=(150, 150)) 
+        img = load_img(filepath, target_size=(50, 50)) 
         x = img_to_array(img) / 255.0  # assuming you normalized images during training
         x = np.expand_dims(x, axis=0)
 

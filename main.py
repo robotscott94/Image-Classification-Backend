@@ -33,7 +33,7 @@ def upload_file():
 
         # Classify the image
         classes = model.predict(x)
-        result = "old" if classes[0][0] > 0.5 else "new" 
+        result = "Traditional" if classes[0][0] > 0.5 else "Modern" 
 
         return jsonify(result=result)
 
